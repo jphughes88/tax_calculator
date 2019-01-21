@@ -20,6 +20,7 @@ public class TaxCalculatorAlternativeFuelTest {
     @Before
     public void setUp() {
         taxCalculator = new EmissionTaxCalculator();
+        EmissionTaxCalculator.storyFeatureToggle = false;
     }
 
     @Test
