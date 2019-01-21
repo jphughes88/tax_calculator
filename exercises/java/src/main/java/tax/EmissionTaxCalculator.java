@@ -1,20 +1,47 @@
 package tax;
 
 public class EmissionTaxCalculator extends TaxCalculator {
+
+    static boolean storyFeatureToggle = false;
+
     @Override
     int calculateTax(Vehicle vehicle) {
         int vehicleEmissions = vehicle.getCo2Emissions();
         FuelType fuelType = vehicle.getFuelType();
-   
         int taxAmount = 0;
+        int yearRegistered = vehicle.getDateOfFirstRegistration().getYear();
 
+
+        if (storyFeatureToggle == true){
+            if ( determineYearDifference(yearRegistered) > 1 ){
+                taxAmount = getSecondYearTaxRate(vehicleEmissions, fuelType);
+            }
+        } else {
+            taxAmount = determineFirstYearTaxAmount(vehicleEmissions, fuelType);
+        }
+        return taxAmount;
+    }
+
+    private int determineFirstYearTaxAmount(int vehicleEmissions, FuelType fuelType) {
+        int taxAmount;
         if (fuelType == FuelType.PETROL){
             taxAmount = calculatePetrolTax(vehicleEmissions);
         } else if (fuelType == FuelType.ALTERNATIVE_FUEL){
             taxAmount = calculateAltFuelTax(vehicleEmissions);
         } else {
-          taxAmount = calculateDieselTax(vehicleEmissions);
+            taxAmount = calculateDieselTax(vehicleEmissions);
         }
+        return taxAmount;
+    }
+
+    private int getSecondYearTaxRate(int vehicleEmissions, FuelType fuelType) {
+        int taxAmount = 0;
+        if (fuelType == FuelType.PETROL || fuelType ==FuelType.DIESEL){
+            taxAmount = 140;
+        } else if (fuelType == FuelType.ALTERNATIVE_FUEL){
+            taxAmount = 130;
+        }
+
         return taxAmount;
     }
 
@@ -104,6 +131,10 @@ public class EmissionTaxCalculator extends TaxCalculator {
             return 1760;
 
         } else { return 2070; }
+    }
+
+    private int determineYearDifference(int yearRegistered) {
+        return getYear() - yearRegistered;
     }
 
 }
