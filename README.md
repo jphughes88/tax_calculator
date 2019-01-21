@@ -92,4 +92,5 @@ This code is a simplified implementation of the rules for UK vehicle tax as of 2
 |Electric               |£310    |
 |Alternative            |£440    |
 
-My new line!
+My new line
+My other new line
