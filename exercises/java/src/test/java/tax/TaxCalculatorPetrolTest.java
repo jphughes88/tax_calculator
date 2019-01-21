@@ -18,7 +18,7 @@ public class TaxCalculatorPetrolTest {
 
     @Before
     public void setUp() {
-        taxCalculator = new TaxCalculatorPetrol();
+        taxCalculator = new EmissionTaxCalculator();
     }
 
     @Test
