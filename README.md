@@ -91,3 +91,5 @@ This code is a simplified implementation of the rules for UK vehicle tax as of 2
 |Petrol or Diesel       |£450    |
 |Electric               |£310    |
 |Alternative            |£440    |
+
+My new line!
