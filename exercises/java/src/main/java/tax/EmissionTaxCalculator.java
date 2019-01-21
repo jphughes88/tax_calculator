@@ -9,17 +9,16 @@ public class EmissionTaxCalculator extends TaxCalculator {
         int taxAmount = 0;
 
         if (fuelType == FuelType.PETROL){
-            taxAmount = PetrolTaxAmount(vehicleEmissions);
+            taxAmount = calculatePetrolTax(vehicleEmissions);
         } else if (fuelType == FuelType.ALTERNATIVE_FUEL){
-            taxAmount = AlternativeFuelTaxAmount(vehicleEmissions);
+            taxAmount = calculateAltFuelTax(vehicleEmissions);
         } else {
           taxAmount = calculateDieselTax(vehicleEmissions);
         }
         return taxAmount;
-
     }
 
-    private int AlternativeFuelTaxAmount(int vehicleEmissions) {
+    private int calculateAltFuelTax(int vehicleEmissions) {
         if (vehicleEmissions >= 0 && vehicleEmissions <= 50) {
             return 0;
         } else if (vehicleEmissions >= 51 && vehicleEmissions <= 75) {
@@ -106,8 +105,5 @@ public class EmissionTaxCalculator extends TaxCalculator {
 
         } else { return 2070; }
     }
-
-   
-
 
 }
